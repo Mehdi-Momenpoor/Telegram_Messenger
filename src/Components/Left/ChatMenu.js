@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar, IconButton, TextField } from '@mui/material';
+import { IconButton, TextField } from '@mui/material';
 import Card from './Card/Card';
+import Drawer from './Drawer/Drawer';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,8 +44,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function ChatMenu() {
 
+
+    const [openDrawer, setOpenDrawer] = useState(false);
+
+
     const classes = useStyles();
     const inputRef = useRef();
+
 
     useEffect(
         () => {
@@ -56,22 +62,27 @@ export default function ChatMenu() {
     return (
         <div className={classes.root}>
 
+            <Drawer
+                openDrawer={openDrawer}
+                onOpenDrawer={(toggleOpen) => setOpenDrawer(toggleOpen)}
+            />
+
             <div className={classes.toolbar}>
-                <IconButton className={classes.menuIcon}>
+                <IconButton onClick={() => setOpenDrawer(true)} className={classes.menuIcon}>
                     <MenuIcon />
                 </IconButton>
+
                 <TextField
                     className={classes.searchBox}
                     size='small'
                     variant='outlined'
                     fullWidth
-                    ref={inputRef}
+                    inputRef={inputRef}
                 />
             </div>
 
             <div className={classes.cartsArea}>
 
-
                 <Card
                     name={'Saleh'}
                     lastMessage={'بشیم بشیم'}
@@ -141,10 +152,6 @@ export default function ChatMenu() {
                     lastMessage={'Ok'}
                     avatarSrc='https://i.pravatar.cc/300?img=4'
                 />
-
-
-
-
 
             </div>
         </div>
