@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import PersonIcon from '@mui/icons-material/Person';
 import Badge from '@mui/material/Badge';
-
+import GroupIcon from '@mui/icons-material/Group';
+import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
+import PushPinIcon from '@mui/icons-material/PushPin';
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -28,7 +30,11 @@ export default function Card({
     avatarSrc,
     date,
     countUnreadMessage,
-    isPin
+    isPin,
+    isMute,
+    type,
+
+
 }) {
 
     const classes = useStyles();
@@ -41,19 +47,24 @@ export default function Card({
 
             <div className={classes.messageInfo}>
                 <div>
-                    <PersonIcon />
+                    {type === 'pv' && <PersonIcon />}
+                    {type === 'group' && <GroupIcon />}
+                    {type === 'channel' && <VolumeMuteIcon />}
+
                     {name}
                 </div>
                 <div>
-                    {/* {lastSenderName} : {lastMessage} */}
-                    {lastMessage}
+                    {type === 'group' ? `${lastSenderName}: ${lastMessage}` : lastMessage}
+                    {/* // {lastSenderName} : {lastMessage} */}
+                    {/* {lastMessage} */}
                 </div>
             </div>
 
             <div>
-                <div>2021/02/11</div>
+                <div>{date}</div>
                 <div>
-                    <Badge badgeContent={Math.floor((Math.random() * 100) + 1)} color="primary" />
+                    <Badge badgeContent={countUnreadMessage} color={isMute ? "secondary" : 'primary'} />
+                    {isPin && <PushPinIcon />}
                 </div>
             </div>
 

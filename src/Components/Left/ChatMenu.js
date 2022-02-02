@@ -44,9 +44,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function ChatMenu() {
 
-
     const [openDrawer, setOpenDrawer] = useState(false);
-
+    const [first, setfirst] = useState([]);
 
     const classes = useStyles();
     const inputRef = useRef();
@@ -55,6 +54,9 @@ export default function ChatMenu() {
     useEffect(
         () => {
             inputRef.current.focus();
+            fetch('https://mocki.io/v1/6ca765ad-f33d-4a00-b755-1bf9463405f8')
+                .then(res => res.json())
+                .then(res => setfirst(res))
         }, []
     )
 
@@ -83,75 +85,24 @@ export default function ChatMenu() {
 
             <div className={classes.cartsArea}>
 
-                <Card
-                    name={'Saleh'}
-                    lastMessage={'بشیم بشیم'}
-                    avatarSrc='https://i.pravatar.cc/300?img=1'
-                />
 
-                <Card
-                    name={'Mahsa'}
-                    lastMessage={'دقیقا'}
-                    avatarSrc='https://i.pravatar.cc/300?img=2'
-                />
+                {first.map(item => {
+                    return <Card
+                        key={item.uuid}
+                        name={item.name}
+                        lastMessage={item.lastMessege}
+                        lastSenderName={item.lastSender}
+                        avatarSrc={item.avatarUrl}
+                        date={item.date}
+                        countUnreadMessage={item.notification}
+                        isMute={item.mute}
+                        type={item.type}
+                        isPin={item.pin}
+                        // seen={item.seen}
+                    />
+                })}
 
-                <Card
-                    name={'Zahra'}
-                    lastMessage={'باشه'}
-                    avatarSrc='https://i.pravatar.cc/300?img=3'
-                />
 
-                <Card
-                    name={'سجاد'}
-                    lastMessage={'Ok'}
-                    avatarSrc='https://i.pravatar.cc/300?img=4'
-                />
-                <Card
-                    name={'Saleh'}
-                    lastMessage={'بشیم بشیم'}
-                    avatarSrc='https://i.pravatar.cc/300?img=1'
-                />
-
-                <Card
-                    name={'Mahsa'}
-                    lastMessage={'دقیقا'}
-                    avatarSrc='https://i.pravatar.cc/300?img=2'
-                />
-
-                <Card
-                    name={'Zahra'}
-                    lastMessage={'باشه'}
-                    avatarSrc='https://i.pravatar.cc/300?img=3'
-                />
-
-                <Card
-                    name={'سجاد'}
-                    lastMessage={'Ok'}
-                    avatarSrc='https://i.pravatar.cc/300?img=4'
-                />
-                <Card
-                    name={'Saleh'}
-                    lastMessage={'بشیم بشیم'}
-                    avatarSrc='https://i.pravatar.cc/300?img=1'
-                />
-
-                <Card
-                    name={'Mahsa'}
-                    lastMessage={'دقیقا'}
-                    avatarSrc='https://i.pravatar.cc/300?img=2'
-                />
-
-                <Card
-                    name={'Zahra'}
-                    lastMessage={'باشه'}
-                    avatarSrc='https://i.pravatar.cc/300?img=3'
-                />
-
-                <Card
-                    name={'سجاد'}
-                    lastMessage={'Ok'}
-                    avatarSrc='https://i.pravatar.cc/300?img=4'
-                />
 
             </div>
         </div>

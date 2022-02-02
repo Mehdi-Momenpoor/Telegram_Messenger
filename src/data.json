@@ -1,0 +1,39 @@
+[
+    {
+        "uuid": 1,
+        "avatarUrl": "https://i.pravatar.cc/300?img=1",
+        "name": "گروه کاربران گنو/لینوکس",
+        "lastMessege": "شروع کن به سوال طرح کردن :)",
+        "lastSender": "S!R X",
+        "notification": 3140,
+        "date": "12:30 AM",
+        "pin": false,
+        "mute": true,
+        "seen": false,
+        "type": "group"
+    },
+    {
+        "uuid": 2,
+        "avatarUrl": "https://i.pravatar.cc/300?img=2",
+        "name": "saleh yousefi",
+        "lastMessege": "hi",
+        "notification": 0,
+        "date": "12:17 AM",
+        "pin": false,
+        "mute": true,
+        "seen": true,
+        "type": "pv"
+    },
+    {
+        "uuid": 3,
+        "avatarUrl": "https://i.pravatar.cc/300?img=3",
+        "name": "WTIAU BOURSE",
+        "lastMessege": "آیه ۲۵",
+        "notification": 32,
+        "date": "7:14 AM",
+        "pin": true,
+        "mute": false,
+        "seen": false,
+        "type": "channel"
+    }
+]
